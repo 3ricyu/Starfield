@@ -1,26 +1,90 @@
-//your code here
+Particle[] aBunch;
 void setup()
 {
-	//your code here
+  size(600,600);
+  aBunch = new Particle[500];
+  for(int i = 0; i < aBunch.length; i++)
+  {
+    aBunch[i] = new NormalParticle();
+    aBunch[1] = new JumboParticle();
+  }
+  //your code here
 }
 void draw()
 {
-	//your code here
+  background(0);
+  for(int i = 0; i < aBunch.length; i++)
+  {
+    aBunch[i].show();
+    aBunch[i].move();
+  }
+  //your code here
 }
-class NormalParticle
+void mousePressed()
 {
-	//your code here
+   for(int i = 0; i < aBunch.length; i++)
+  {
+    aBunch[i] = new NormalParticle();
+    aBunch[1] = new JumboParticle();
+  }
+  
+}
+class NormalParticle implements Particle
+{
+  double x,y,angle,speed;
+  int pColor;
+  
+  NormalParticle()
+  {
+    x = 300;
+    y = 300;
+    angle = Math.random()*2*Math.PI;
+    speed = Math.random()*6+1;
+    pColor = color((int)(Math.random()),(int)(Math.random()),(int)(Math.random()));
+    
+  }
+  public void move()
+  {
+    x = x + Math.cos(angle)*speed;
+    y = y + Math.sin(angle)*speed;
+  }
+  public void show()
+  {
+    fill((float)(Math.random()*256),(float)(Math.random()*256),(float)(Math.random()*256));
+    ellipse((float)x,(float)y,5,5);
+  }
+  //your code here
 }
 interface Particle
 {
-	//your code here
+  public void move();
+  public void show();
+  //your code here
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
-	//your code here
+  double oddX,oddY,oddSpeed,oddAngle;
+  int oddColor;
+  OddballParticle()
+  {
+    
+    
+  }
+  public void move()
+  {
+  }
+  public void show()
+  {
+    
+  }
+  //your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle //uses inheritance
 {
-	//your code here
+  public void show()
+  {
+    fill((float)(Math.random()*256),(float)(Math.random()*256),(float)(Math.random()*256));
+    ellipse((float)x,(float)y,50,50);
+  }
+  //your code here
 }
-
