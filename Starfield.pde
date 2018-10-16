@@ -7,6 +7,7 @@ void setup()
   {
     aBunch[i] = new NormalParticle();
     aBunch[1] = new JumboParticle();
+    aBunch[2] = new OddballParticle();
   }
   //your code here
 }
@@ -26,9 +27,8 @@ void mousePressed()
   {
     aBunch[i] = new NormalParticle();
     aBunch[1] = new JumboParticle();
-    
+    aBunch[2] = new OddballParticle();
   }
-  aBunch[2] = new OddballParticle();
   
 }
 class NormalParticle implements Particle
@@ -41,7 +41,7 @@ class NormalParticle implements Particle
     x = 300;
     y = 300;
     angle = Math.random()*2*Math.PI;
-    speed = Math.random()*6+1;
+    speed = Math.random()*7+0.5;
     pColor = color((int)(Math.random()),(int)(Math.random()),(int)(Math.random()));
     
   }
@@ -72,7 +72,7 @@ class OddballParticle implements Particle //uses an interface
     oddX = 300;
     oddY = 300;
     oddAngle = Math.random()*2*Math.PI;
-    oddSpeed = Math.random()*30+1;
+    oddSpeed = Math.random()*30+10;
     oddColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
     
   }
@@ -80,8 +80,10 @@ class OddballParticle implements Particle //uses an interface
   {
     oddX = oddX + Math.cos(oddAngle)*oddSpeed;
     oddY = oddY + Math.sin(oddAngle)*oddSpeed;
-    if (oddX > 600 || oddX < 0) oddX = mouseX;
-    if (oddY > 600 || oddY < 0) oddY = mouseY;
+    if (oddX > 600) oddX = 0;
+    if(oddX < 0) oddX = 600;
+    if (oddY > 600) oddY = 0;
+    if (oddY < 0) oddY = 600;
   }
   public void show()
   {
