@@ -80,15 +80,15 @@ class OddballParticle implements Particle //uses an interface
   }
   public void move()
   {
-    oddX = oddX + Math.cos(oddAngle)*oddSpeed + 10;
-    oddY = oddY + Math.sin(oddAngle)*oddSpeed + 4;
+    oddX = oddX + Math.cos(oddAngle)*oddSpeed + 5;
+    oddY = oddY + Math.sin(oddAngle)*oddSpeed + 3;
     oddAngle = oddAngle + oddSpeed;
     if (oddX > 600) oddX = 0;
     if (oddY > 600) oddY = 0;
   }
   public void show()
   {
-    fill(oddColor);
+    fill(oddColor,150);
     rect((float)oddX,(float)oddY,30,30);
   }
   //your code here
